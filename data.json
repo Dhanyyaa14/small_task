@@ -1,0 +1,13 @@
+[
+    { "region": "North", "sales": 500 },
+    { "region": "South", "sales": 300 },
+    { "region": "East", "sales": 450 },
+    { "region": "West", "sales": 600 },
+    { "region": "Central", "sales": 700 },
+    { "region": "Northeast", "sales": 550 },
+    { "region": "Southeast", "sales": 620 },
+    { "region": "Midwest", "sales": 490 },
+    { "region": "Southwest", "sales": 510 },
+    { "region": "Northwest", "sales": 580 }
+  ]
+  
