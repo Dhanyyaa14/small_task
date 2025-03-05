@@ -1,0 +1,28 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+    <App id="app">
+        <pages>
+            <Page title="Sales Data">
+                <content>
+                    <Table id="salesTable" items="{salesModel>/salesData}">
+
+                        <columns>
+                            <Column><Text text="Region"/></Column>
+                            <Column><Text text="Sales"/></Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{salesModel>region}"/>
+                                    <Text text="{salesModel>sales}"/>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </content>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>
