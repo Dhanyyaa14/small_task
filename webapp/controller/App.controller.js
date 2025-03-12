@@ -6,7 +6,7 @@ sap.ui.define([
 
     return Controller.extend("my.app.controller.App", {
         onInit: function () {
-            var oModel = new JSONModel();
+            var oModel = new sap.ui.model.json.JSONModel();
             this.getView().setModel(oModel, "salesModel");
 
             
@@ -14,14 +14,24 @@ sap.ui.define([
             fetch("http://localhost:5500/data")
                 .then(response => response.json())
                 .then(data => {
-                    console.log("Fetched Data:", data);
+                    //console.log("Fetched Data:", data);
                     oModel.setData({ salesData: data });
-                    console.log("Model Data:", oModel.getData());  
+                    //console.log("Model Data:", oModel.getData());  
                 })
                 .catch(error => console.error("Error fetching data:", error));
             
-                
+            
            
+        },
+        onNavToChart: function () {
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            oRouter.navTo("Chart");
         }
     });
 });
+
+
+
+
+
+

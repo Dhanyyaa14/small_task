@@ -1,0 +1,50 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:viz="sap.viz.ui5.controls"
+    displayBlock="true">
+    <App id="app">
+        <pages>
+            <Page title="Sales Data">
+                <content>
+                    <Table id="salesTable" items="{salesModel>/salesData}">
+                        <columns>
+                            <Column><Text text="Region"/></Column>
+                            <Column><Text text="Sales"/></Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{salesModel>region}"/>
+                                    <Text text="{salesModel>sales}"/>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+
+                    <!-- Pie Chart -->
+                    <viz:VizFrame id="idPieChart" width="100%" height="400px" vizType="pie">
+                        <viz:dataset>
+                            <viz.data:FlattenedDataset xmlns:viz.data="sap.viz.ui5.data"
+                                data="{salesModel>/salesData}">
+                                <viz.data:dimensions>
+                                    <viz.data:DimensionDefinition name="Region" value="{salesModel>region}" />
+                                </viz.data:dimensions>
+                                <viz.data:measures>
+                                    <viz.data:MeasureDefinition name="Sales" value="{salesModel>sales}" />
+                                </viz.data:measures>
+                            </viz.data:FlattenedDataset>
+                        </viz:dataset>
+                        <viz:feeds>
+                            <viz.feeds:FeedItem xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+                                type="Dimension" uid="color" values="Region" />
+                            <viz.feeds:FeedItem xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+                                type="Measure" uid="size" values="Sales" />
+                        </viz:feeds>
+                    </viz:VizFrame>
+
+                </content>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>

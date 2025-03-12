@@ -3,12 +3,11 @@
     "sap.app": {
         "id": "my.app",
         "type": "application",
-        "i18n": "i18n/i18n.properties",
         "applicationVersion": {
             "version": "1.0.0"
         },
-        "title": "{{appTitle}}",
-        "description": "{{appDescription}}"
+        "title": "SAP UI5 App",
+        "description": "A simple SAP UI5 app"
     },
     "sap.ui": {
         "technology": "UI5",
@@ -16,6 +15,30 @@
             "desktop": true,
             "tablet": true,
             "phone": true
+        }
+    },
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "my.app.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "app"
+        },
+        "dependencies": {
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ui.layout": {},
+				"sap.viz": {}
+            }
+        },
+        "models": {
+            "salesModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": {
+                    "defaultBindingMode": "TwoWay"
+                }
+            }
         }
     }
 }

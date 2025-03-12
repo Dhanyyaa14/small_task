@@ -1,0 +1,48 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="my.app.controller.Chart"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+    displayBlock="true">
+
+    <App>
+        <Page title="Sales Chart">
+            <content>
+                <FlexBox justifyContent="Center" fitContainer="true">
+                    <viz:VizFrame 
+                        id="idVizFrame" 
+                        uiConfig="{applicationSet:'fiori'}"
+                        height="400px" 
+                        width="100%" 
+                        vizType="bar">
+                        
+                        <viz:dataset>
+                            <viz.data:FlattenedDataset data="{salesModel>/salesData}">
+                                <viz.data:dimensions>
+                                    <viz.data:DimensionDefinition name="Region" value="{salesModel>region}" />
+                                </viz.data:dimensions>
+                                <viz.data:measures>
+                                    <viz.data:MeasureDefinition name="Sales" value="{salesModel>sales}" />
+                                </viz.data:measures>
+                            </viz.data:FlattenedDataset>
+                        </viz:dataset>
+
+                        <viz:feeds>
+                            <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Region" />
+                            <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Sales" />
+                        </viz:feeds>
+
+                        <viz:dependents>
+                            <viz:Popover id="idPopOver" />
+                        </viz:dependents>
+
+                    </viz:VizFrame>
+                </FlexBox>
+
+                <Button text="Back" press="onNavBack" />
+            </content>
+        </Page>
+    </App>
+</mvc:View>

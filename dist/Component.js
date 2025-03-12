@@ -1,2 +1,2 @@
-sap.ui.define(["sap/ui/core/UIComponent"],function(t){"use strict";return t.extend("my.app.Component",{metadata:{manifest:"json"},init:function(){t.prototype.init.apply(this,arguments)}})});
+sap.ui.define(["sap/ui/core/UIComponent","sap/ui/model/json/JSONModel"],function(t,e){"use strict";return t.extend("my.app.Component",{metadata:{manifest:"json"},init:function(){t.prototype.init.apply(this,arguments);var a=new e;var o=this;a.loadData("http://localhost:5500/data");a.attachRequestCompleted(function(){console.log("Fetched Data:",a.getData());o.setModel(a,"salesModel")});a.attachRequestFailed(function(t){console.error("Failed to fetch data:",t.getParameter("statusText"))})}})});
 //# sourceMappingURL=Component.js.map

@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/mvc/Controller","sap/ui/model/json/JSONModel"],function(e,t){"use strict";return e.extend("my.app.controller.App",{onInit:function(){var e=new t;this.getView().setModel(e,"salesModel");fetch("http://localhost:5500/data").then(e=>e.json()).then(t=>{e.setData({salesData:t});console.log("Model Data:",e.getData())}).catch(e=>console.error("Error fetching data:",e))}})});
+//# sourceMappingURL=App.controller.js.map

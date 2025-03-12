@@ -1,4 +1,5 @@
 <mvc:View
+    controllerName="my.app.controller.App"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     displayBlock="true">
@@ -6,8 +7,8 @@
         <pages>
             <Page title="Sales Data">
                 <content>
+                    <Button text="View Chart" press="onNavToChart"/>
                     <Table id="salesTable" items="{salesModel>/salesData}">
-
                         <columns>
                             <Column><Text text="Region"/></Column>
                             <Column><Text text="Sales"/></Column>

@@ -27,7 +27,8 @@
         "dependencies": {
             "libs": {
                 "sap.m": {},
-                "sap.ui.core": {}
+                "sap.ui.core": {},
+                "sap.viz": {}
             }
         },
         "models": {
@@ -37,6 +38,57 @@
                     "defaultBindingMode": "TwoWay"
                 }
             }
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "controlId": "app",
+                "controlAggregation": "pages",
+                "async": true
+            },
+            "routes": [
+                {
+                    "pattern": "",
+                    "name": "App",
+                    "target": "App"
+                },
+                {
+                    "pattern": "chart",
+                    "name": "Chart",
+                    "target": "Chart"
+                }
+            ],
+            "targets": {
+                "App": {
+                   "viewName": "App",
+                   "viewType": "XML",
+                   "viewPath": "my.app.view",
+                    "controlId": "app",
+                   "controlAggregation": "pages",
+                     "viewLevel": 1
+                 },
+                 "Chart": {
+                     "viewName": "Chart",
+                    "viewType": "XML",
+                    "viewPath": "my.app.view",
+                    "controlId": "app",
+                   "controlAggregation": "pages",
+                     "viewLevel": 2
+                    },
+                "config": {
+			        "sample": {
+				      "stretch": true,
+				            "files": [
+					             "Chart.view.xml",
+					             "BarChart.controller.js",
+					             "Component.js",
+					             "manifest.json"
+				]
+			}
+		}
+             }
+
         }
     }
 }
