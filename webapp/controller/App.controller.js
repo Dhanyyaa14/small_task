@@ -6,32 +6,24 @@ sap.ui.define([
 
     return Controller.extend("my.app.controller.App", {
         onInit: function () {
-            var oModel = new sap.ui.model.json.JSONModel();
-            this.getView().setModel(oModel, "salesModel");
-
-            
-            
-            fetch("http://localhost:5500/data")
-                .then(response => response.json())
-                .then(data => {
-                    //console.log("Fetched Data:", data);
-                    oModel.setData({ salesData: data });
-                    //console.log("Model Data:", oModel.getData());  
-                })
-                .catch(error => console.error("Error fetching data:", error));
-            
-            
-           
+            // We'll use the model from the Component instead of creating a new one
+            var oModel = this.getOwnerComponent().getModel("salesModel");
+            if (!oModel) {
+                console.error("❌ Error: salesModel not found in component");
+                
+                // Create model only if not available from component
+                oModel = new sap.ui.model.json.JSONModel();
+                oModel.setData({ salesData: [] });
+                this.getView().setModel(oModel, "salesModel");
+            } else {
+                // Set the component's model to the view
+                this.getView().setModel(oModel, "salesModel");
+            }
         },
+        
         onNavToChart: function () {
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
             oRouter.navTo("Chart");
         }
     });
 });
-
-
-
-
-
-

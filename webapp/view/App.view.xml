@@ -7,7 +7,7 @@
         <pages>
             <Page title="Sales Data">
                 <content>
-                    <Button text="View Chart" press="onNavToChart"/>
+                    <Button text="View Chart" press=".onNavToChart"/>
                     <Table id="salesTable" items="{salesModel>/salesData}">
                         <columns>
                             <Column><Text text="Region"/></Column>

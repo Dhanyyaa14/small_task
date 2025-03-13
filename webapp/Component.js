@@ -19,19 +19,32 @@ sap.ui.define([
             // Create and load JSON data model
             var oModel = new JSONModel();
             
-            oModel.loadData("http://localhost:5500/data"); // Change to match your API
+            // Set default data structure
+            oModel.setData({ salesData: [] });
             
-            oModel.attachRequestCompleted(function() {
-                var data = oModel.getData();
-                console.log("📊 Data Received:", data);
-                
-                if (!data || !Array.isArray(data)) {
-                    console.error("❌ Invalid Data Format!");
-                    return;
-                }
+            // Load data from server
+            fetch("http://localhost:5500/data")
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(data) {
+                    console.log("📊 Data Received:", data);
+                    
+                    if (!data || !Array.isArray(data)) {
+                        console.error("❌ Invalid Data Format!");
+                        return;
+                    }
 
-                oModel.setData({ salesData: data });
-            });
+                    oModel.setData({ salesData: data });
+                    
+                    // Fire event to notify that data is ready
+                    sap.ui.getCore().getEventBus().publish("salesModel", "ready", { data: data });
+                    oModel.fireEvent("dataReceived");
+                    oModel.fireEvent("requestCompleted");
+                })
+                .catch(function(error) {
+                    console.error("❌ Error fetching data:", error);
+                });
 
             this.setModel(oModel, "salesModel");
         }
